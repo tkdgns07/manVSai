@@ -25,19 +25,30 @@ SECRET_KEY = 'django-insecure-mt(p#4o@8w$td9itc2uzbjm2y7j=q7p^)+k23$e+5=dd0(zchc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'http://localhost:3000/',
+    '127.0.0.1'
+]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # 프론트엔드 주소
+    "http://127.0.0.1:3000",  # 둘 다 추가하는 것이 좋음
+]
 
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core'
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,9 +58,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = 'config.urls'
+
+CORS_ALLOW_CREDENTIALS = True
 
 TEMPLATES = [
     {
